@@ -1,2 +1,2 @@
-L2_LINES: ?
-L3_LINES: ?
+L2_LINES: 4608 Cache lines
+L3_LINES: 135680 Cache lines

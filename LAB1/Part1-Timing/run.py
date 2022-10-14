@@ -8,10 +8,10 @@ from tqdm import tqdm
 
 # Run your code:
 # Make sure that your code is using print_results_for_python
-#executable_filename = ['make', 'run']
+executable_filename = ['make', 'run']
 
 # Run reference code:
-executable_filename = ['make', 'run-reference']
+#executable_filename = ['make', 'run-reference']
 
 num_runs = 100
 

@@ -1,26 +1,27 @@
 # Put all sizes in bytes and times in cycles
 
 Cache Line Size:
-L1: 64
-L2:
-L3:
+L1: 64 Byte
+L2: 64 Byte
+L3: 64 Byte
 
 Total Size:
-L1:
-L2:
-L3:
+L1: DCache 32 KB, ICache 32 KB 
+L2: 256 KB
+L3: 8 MB
 
 Number of Ways:
-L1:
-L2:
-L3:
+L1: 8
+L2: 8
+L3: 16
 
 Number of Sets:
-L1:
-L2:
-L3:
+L1: DCache 64, ICache 64
+L2: 512
+L3: 8192
 
 Latency:
-L1:
-L2:
-L3:
+L1: 4-5 cycles
+L2: 12 cycles
+L3: 26-31 cycles
+(I only found Sandy Bridge from wikichip)
