@@ -32,9 +32,9 @@ int main (int ac, char **av) {
     // [1.4] TODO: Uncomment the following line to allocate a buffer of a size
     // of your chosing. This will help you measure the latencies at L2 and L3.
     uint32_t eviction_l1_size = (uint32_t)(4*L1_SIZE);
-    uint32_t eviction_l1_l2_size = (uint32_t)(7*(L1_SIZE+L2_SIZE));
+    uint32_t eviction_l2_size = (uint32_t)(10*L2_SIZE);
     uint64_t *eviction_buffer_l1 = (uint64_t *)malloc(eviction_l1_size);
-    uint64_t *eviction_buffer_l1_l2 = (uint64_t *)malloc(eviction_l1_l2_size);
+    uint64_t *eviction_buffer_l2 = (uint64_t *)malloc(eviction_l2_size);
 
     //printf("%d %d\n", eviction_l1_size, eviction_l1_l2_size);
     // Example: Measure L1 access latency, store results in l1_latency array
@@ -77,8 +77,8 @@ int main (int ac, char **av) {
     for (int i=0; i<SAMPLES; i++){
         tmp = target_buffer[0];
         for (int j=0; j<4; j++) {
-            for (int k=0; k<(eviction_l1_l2_size>>3); k++) 
-                tmp = eviction_buffer_l1_l2[k];
+            for (int k=0; k<(eviction_l2_size>>3); k++) 
+                tmp = eviction_buffer_l2[k];
         }
         l3_latency[i] = measure_one_block_access_time((uint64_t)target_buffer);
     }
@@ -90,7 +90,7 @@ int main (int ac, char **av) {
 
     free(target_buffer);
     free(eviction_buffer_l1);
-    free(eviction_buffer_l1_l2);
+    free(eviction_buffer_l2);
 
     // [1.4] TODO: Uncomment this line once you uncomment the eviction_buffer creation line
     //free(eviction_buffer);

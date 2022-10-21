@@ -1,0 +1,4 @@
+Question6:
+Step1: The receiver primes cache set #0-255 in L2.
+Step2: If the sender transmits N (0<=N<=255), it will evict all the cache line in cache set #N.
+Step3: The receiver probes cache set #0-255 in L2 If there are cache misses in set #N, the transmitted number is N.

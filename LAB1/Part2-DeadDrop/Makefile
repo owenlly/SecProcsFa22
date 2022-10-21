@@ -12,7 +12,7 @@ $(UTILS): %.o: %.c %.h
 	$(CC) $(CFLAGS)  -c $< 
 
 $(TARGETS): %:%.o util.o
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -lpthread
 
 run_sender: sender 
 	taskset -c $(SENDER_CPU) ./sender
